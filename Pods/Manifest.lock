@@ -1,0 +1,16 @@
+PODS:
+  - Mindbox (1.0.6)
+
+DEPENDENCIES:
+  - Mindbox
+
+SPEC REPOS:
+  trunk:
+    - Mindbox
+
+SPEC CHECKSUMS:
+  Mindbox: acb1c6d8ec8d615afe1595bf7fea1b89ba9a6dcb
+
+PODFILE CHECKSUM: c96ec540f01b199f22b53d1b75fa382b21e6f275
+
+COCOAPODS: 1.10.1

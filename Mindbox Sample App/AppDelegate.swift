@@ -7,16 +7,65 @@
 
 import UIKit
 import CoreData
+import Mindbox
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: MindboxAppDelegate {
 
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
-    }
+    override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+            // Call super when using MindboxAppDelegate
+            super.application(application, didFinishLaunchingWithOptions: launchOptions)
+
+            // Вызов метода регистрации уведомлений
+            registerForRemoteNotifications()
+            
+            var errorMessage = "";
+            
+            do {
+                //    Конфигурация SDK
+                let configuration = try MBConfiguration(
+                    endpoint: "mpush-test-ios-sandbox-docs",
+                    domain: "api.mindbox.ru",
+                    subscribeCustomerIfCreated: true
+                )
+                
+                Mindbox.shared.initialization(configuration: configuration)
+                errorMessage = "";
+            } catch  {
+               print(errorMessage);
+            }
+           
+        Mindbox.shared.getDeviceUUID{
+            deviceUUID in print(deviceUUID)
+        }
+            return true
+        }
+        
+        func userNotificationCenter(
+            _ center: UNUserNotificationCenter,
+            willPresent notification: UNNotification,
+            withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+        ) {
+            completionHandler([.alert, .badge, .sound])
+        }
+        
+        //    MARK: registerForRemoteNotifications
+        //    Функция запроса разрешения на уведомления. В комплишн блоке надо передать статус разрешения в SDK Mindbox
+        func registerForRemoteNotifications() {
+            UNUserNotificationCenter.current().delegate = self
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                    print("Permission granted: \(granted)")
+                    if let error = error {
+                        print("NotificationsRequestAuthorization failed with error: \(error.localizedDescription)")
+                    }
+                    Mindbox.shared.notificationsRequestAuthorization(granted: granted)
+                }
+            }
+        }
 
     // MARK: UISceneSession Lifecycle
 
