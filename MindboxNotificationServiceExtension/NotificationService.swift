@@ -6,7 +6,7 @@
 //
 
 import UserNotifications
-import Mindbox
+import MindboxNotifications
 
 class NotificationService: UNNotificationServiceExtension {
     

@@ -8,7 +8,7 @@
 import UIKit
 import UserNotifications
 import UserNotificationsUI
-import Mindbox
+import MindboxNotifications
 
 class NotificationViewController: UIViewController, UNNotificationContentExtension {
     

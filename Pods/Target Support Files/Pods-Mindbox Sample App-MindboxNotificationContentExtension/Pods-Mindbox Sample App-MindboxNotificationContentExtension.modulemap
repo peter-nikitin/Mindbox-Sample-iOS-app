@@ -1,6 +1,0 @@
-framework module Pods_Mindbox_Sample_App_MindboxNotificationContentExtension {
-  umbrella header "Pods-Mindbox Sample App-MindboxNotificationContentExtension-umbrella.h"
-
-  export *
-  module * { export * }
-}

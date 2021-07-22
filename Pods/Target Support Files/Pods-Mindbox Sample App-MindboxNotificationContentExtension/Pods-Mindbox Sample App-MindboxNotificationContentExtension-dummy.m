@@ -1,5 +1,0 @@
-#import <Foundation/Foundation.h>
-@interface PodsDummy_Pods_Mindbox_Sample_App_MindboxNotificationContentExtension : NSObject
-@end
-@implementation PodsDummy_Pods_Mindbox_Sample_App_MindboxNotificationContentExtension
-@end

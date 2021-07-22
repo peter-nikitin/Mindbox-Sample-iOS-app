@@ -28,7 +28,8 @@ class AppDelegate: MindboxAppDelegate {
                 let configuration = try MBConfiguration(
                     endpoint: "mpush-test-ios-sandbox-docs",
                     domain: "api.mindbox.ru",
-                    subscribeCustomerIfCreated: true
+                    subscribeCustomerIfCreated: true,
+                    shouldCreateCustomer: true
                 )
                 
                 Mindbox.shared.initialization(configuration: configuration)
@@ -42,6 +43,29 @@ class AppDelegate: MindboxAppDelegate {
         }
             return true
         }
+    
+    // MARK: пример получени ссылки из кликнутого уведомления
+    override func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        
+        let actionId = response.actionIdentifier;
+        let userInfo = response.notification.request.content.userInfo;
+        let buttons = userInfo["buttons"] as? Array<[String: String]>
+        let clickedButton = buttons?.first(where: {$0["uniqueKey"] == actionId})
+        var url = "";
+        if (clickedButton != nil) {
+            url = clickedButton!["url"]!
+        } else {
+            url = userInfo["clickUrl"] as! String
+        }
+        
+        // Обработайте URL клика
+        print(url)
+        
+    }
         
         func userNotificationCenter(
             _ center: UNUserNotificationCenter,
