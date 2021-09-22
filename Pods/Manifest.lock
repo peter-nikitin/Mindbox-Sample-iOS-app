@@ -1,6 +1,6 @@
 PODS:
-  - Mindbox (1.0.7)
-  - MindboxNotifications (1.0.7)
+  - Mindbox (1.2.0)
+  - MindboxNotifications (1.2.0)
 
 DEPENDENCIES:
   - Mindbox
@@ -12,8 +12,8 @@ SPEC REPOS:
     - MindboxNotifications
 
 SPEC CHECKSUMS:
-  Mindbox: d99c1740f2fc7f9183074d05f71b4bdaa93fac21
-  MindboxNotifications: efef31bb7db15707d4a9ef6d7488a97be46db089
+  Mindbox: fbe5d5fe3003ddecb352578f0816804c47afb956
+  MindboxNotifications: 12208cb1f9cbb5bdfb6cce489372e6b08b8bb6eb
 
 PODFILE CHECKSUM: 5c8535c4fb55decd4ff45329855928900111f953
 
