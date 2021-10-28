@@ -6,14 +6,42 @@
 //
 
 import UIKit
+import Mindbox
 
 class ViewController: UIViewController {
+    @IBOutlet weak var textLabel:UILabel?
 
+    @IBOutlet weak var copyBtn: UIButton!
+    
+    @objc func copyUUID() {
+        
+        Mindbox.shared.getDeviceUUID{
+            deviceUUID in let uuid = deviceUUID
+            
+            let pasteboard = UIPasteboard.general
+            pasteboard.string = uuid
+            
+        }
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    
+        
+        Mindbox.shared.getDeviceUUID{
+            deviceUUID in self.textLabel?.text = deviceUUID
+        }
+        
+        copyBtn.addTarget(self, action: #selector(self.copyUUID), for: .touchUpInside)
+        
+        
     }
 
 
+
+       
+    
 }
 
